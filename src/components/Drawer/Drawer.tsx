@@ -1,7 +1,8 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { Portal } from '../Portal/Portal';
 import { Transition } from '@headlessui/react';
-import { Ovelay } from '../Overlay/Overlay';
+import { Overlay } from '../Overlay/Overlay';
+import { useEscapeHandler } from '../EscapeHandlerProvider/EscapeHandlerProvider';
 
 export type TDrawerPosition = 'top' | 'bottom' | 'left' | 'right';
 
@@ -50,9 +51,20 @@ export const Drawer = ({
   position = 'right',
 }: IDrawer) => {
   const positionConfig = mapPosition[position];
+  const { handler } = useEscapeHandler();
+
+  useEffect(() => {
+    if (isOpen) {
+      const unregister = handler(onClose);
+      return () => {
+        unregister();
+      };
+    }
+  }, [handler, isOpen, onClose]);
+
   return (
     <Portal>
-      <Ovelay onClose={onClose} isOpen={isOpen} />
+      <Overlay onClose={onClose} isOpen={isOpen} />
       <Transition
         show={isOpen}
         enter="transition-transform duration-300"

@@ -1,4 +1,5 @@
 import { TDrawerPosition } from '../Drawer/Drawer';
+import { TTooltipPosition } from '../Tooltip/Tooltip';
 
 const options = [
   { id: 'top', label: 'top' },
@@ -11,8 +12,8 @@ export const RadioButton = ({
   selected,
   setSelected,
 }: {
-  setSelected: (opt: TDrawerPosition) => void;
-  selected: TDrawerPosition;
+  setSelected: (opt: TDrawerPosition | TTooltipPosition) => void;
+  selected: TDrawerPosition | TTooltipPosition;
 }) => {
   return (
     <div className="flex space-x-6">

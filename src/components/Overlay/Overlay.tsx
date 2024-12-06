@@ -1,7 +1,7 @@
 import { Transition } from '@headlessui/react';
 import './Overlay.css';
 
-export const Ovelay = ({
+export const Overlay = ({
   onClose,
   isOpen,
 }: {

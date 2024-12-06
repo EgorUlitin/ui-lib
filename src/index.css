@@ -24,6 +24,8 @@ code {
   border-radius: 5px;
   border: 2px solid rgb(140, 78, 222);
 
+  padding: 5px;
+
   cursor: pointer;
 
   &:hover {

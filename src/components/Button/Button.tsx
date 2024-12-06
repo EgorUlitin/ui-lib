@@ -1,13 +1,15 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { ButtonHTMLAttributes, ReactNode, forwardRef } from 'react';
 
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
-export const Button = ({ children, ...props }: IButton) => {
-  return (
-    <button className="button" type="button" {...props}>
-      {children}
-    </button>
-  );
-};
+export const Button = forwardRef<HTMLButtonElement, IButton>(
+  ({ children, ...props }, ref) => {
+    return (
+      <button ref={ref} className="button" type="button" {...props}>
+        {children}
+      </button>
+    );
+  },
+);
